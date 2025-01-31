@@ -5,8 +5,9 @@ import { setupMessage } from "./Utils/setupMessage.js";
 import { loadCommands } from "./Utils/loadCommands.js";
 import { setupModal } from "./Utils/setupModal.js";
 import chalk from "chalk";
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
-// test
 const formatColor = function (string) {
     const processNestedColors = (input) => {
         const regex = /(\w+|#[0-9A-Fa-f]{3,6})\{([^{}]*)\}/g;
@@ -289,4 +290,12 @@ export default {
                 return "Unknown Channel Type";
         }
     },
+    /**
+     * Resolves the directory name of the current module.
+     * @param {string} importMetaUrl - The `import.meta.url` of the module.
+     * @returns {string} The directory name of the current module.
+     */
+    getDirname: (importMetaUrl) => {
+        return dirname(fileURLToPath(importMetaUrl));
+    }
 }
