@@ -106,7 +106,7 @@ const execute = async (bot, message) => {
         );
       }
 
-      if (cmd.commandConfig.requiredPermissions.user) {
+      if (cmd.commandConfig.requiredPermissions.user && cmd.commandConfig.requiredPermissions.user.length >= 1) {
         if (
           !message.member?.permissions.has(
             cmd.commandConfig.requiredPermissions.user
@@ -121,7 +121,7 @@ const execute = async (bot, message) => {
         }
       }
 
-      if (cmd.commandConfig.requiredPermissions.bot) {
+      if (cmd.commandConfig.requiredPermissions.bot && cmd.commandConfig.requiredPermissions.bot.length >= 1) {
         if (
           !message.guild?.members.me?.permissions.has(
             cmd.commandConfig.requiredPermissions.bot
