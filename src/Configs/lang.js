@@ -1,11 +1,15 @@
 import { Config } from "../Modules/Structures/Handlers/Config.js";
-import { SetupMessage } from "../Modules/Utils/setupMessage.js";
+import { setupMessage, SetupMessage } from "../Modules/Utils/setupMessage.js";
 import path from "path";
 
 const __dirname = path.resolve();
 
 const LangType = {
   TagEmbed: SetupMessage,
+  Presets: {
+    Error: SetupMessage,
+    CommandError: SetupMessage
+  },
   General: {
     Info: {
       BotInfo: SetupMessage,
@@ -35,6 +39,30 @@ const LangType = {
 
 /** @type {LangType} */
 const defaultConfig = {
+  Presets: {
+    Error: {
+      Embeds: [
+        {
+          Description: "### An unknown error occured.\n{error}",
+          Color: "#ef1e13",
+          Footer: "{brand-name} Error Handler",
+          FooterIcon: "{brand-logo}",
+          Timestamp: true
+        }
+      ]
+    },
+    CommandError: {
+      Embeds: [
+        {
+          Description: "### There was a problem executing this command.\n{error}",
+          Color: "#ef1e13",
+          Footer: "{brand-name} Error Handler",
+          FooterIcon: "{brand-logo}",
+          Timestamp: true
+        }
+      ]
+    }
+  },
   TagEmbed: {
     Embeds: [
       {
@@ -66,6 +94,33 @@ const defaultConfig = {
         Timestamp: true,
       },
     ],
+  },
+  Admin: {
+    Eval: {
+      Embeds: [
+        {
+          Title: "⚡ Eval Execution",
+          Description: "Executed by {user-mention}",
+          Color: "{brand-color}",
+          Fields: [
+            {
+              Name: "📥 Input",
+              Value: "```js\n{input}```",
+              Inline: false
+            },
+            {
+              Name: "📤 Output",
+              Value: "```js\n{output}```",
+              Inline: false
+            }
+          ],
+          Footer: "{brand-name} | Secure Execution",
+          FooterIcon: "{brand-logo}",
+          Timestamp: true
+        }
+      ]
+      
+    }
   },
   General: {
     Info: {

@@ -5,6 +5,9 @@ import { CommandData } from "../Modules/Structures/Interfaces/Command.js";
 const __dirname = path.resolve();
 
 const CommandsType = {
+    Admin: {
+        Eval: CommandData
+    },
     General: {
         Info: CommandData,
         Help: CommandData
@@ -13,6 +16,28 @@ const CommandsType = {
 
 /** @type {CommandsType} */
 const defaultConfig = {
+    Admin: {
+        Eval: {
+            Enabled: true,
+            Name: "eval",
+            Usage: "eval <code>",
+            Cooldown: 0,
+            Permission: ["272257729320714240"],
+            "~11": "Set this to your Discord user ID. Only trusted users should have access.",
+            "~12": "⚠️ Eval grants full control over the bot and server.",
+            "~13": "Misuse can lead to serious consequences. Use with caution.",
+            Description: "Evaluates JavaScript code from the bot.",
+            DeleteCommand: false,
+            Arguments: [
+                {
+                    Name: "code",
+                    Type: "string",
+                    Description: "The JavaScript code to evaluate",
+                    Required: true,
+                },
+            ],
+        }
+    },
     General: {
         Info: {
             Enabled: true,
@@ -78,7 +103,7 @@ const defaultConfig = {
                 }]
             }]
         }
-    }
+    },
 }
 
 export default new Config(path.join(__dirname, "./data/commands.yml"), defaultConfig)
