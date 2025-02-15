@@ -98,8 +98,7 @@ const execute = async (bot, interaction) => {
           })
         );
       }
-
-      if (cmd.commandConfig.requiredPermissions.user) {
+      if (cmd.commandConfig.requiredPermissions.user && cmd.commandConfig.requiredPermissions.user.length >= 1) {
         if (
           !interaction.guild?.members.cache
             .get(interaction.user.id)
@@ -114,7 +113,7 @@ const execute = async (bot, interaction) => {
         }
       }
 
-      if (cmd.commandConfig.requiredPermissions.bot) {
+      if (cmd.commandConfig.requiredPermissions.bot && cmd.commandConfig.requiredPermissions.bot.length >= 1) {
         if (
           !interaction.guild?.members.me?.permissions.has(
             cmd.commandConfig.requiredPermissions.bot
